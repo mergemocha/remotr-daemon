@@ -1,3 +1,3 @@
-# typescript-boilerplate
+# remotr-daemon
 
-Organisation-level boilerplate for TypeScript projects
+Daemon software for Remotr
