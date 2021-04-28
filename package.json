@@ -4,6 +4,8 @@
   "description": "Daemon software for Remotr",
   "main": "lib/index.js",
   "scripts": {
+    "start": "node lib/index.js",
+    "dev": "nodemon lib/index.js",
     "build": "tsc",
     "watch": "tsc --watch",
     "test": "jest",
@@ -24,6 +26,9 @@
   },
   "homepage": "https://github.com/mergemocha/remotr-daemon#readme",
   "devDependencies": {
+    "@types/dotenv-safe": "^8.1.1",
+    "@types/express": "^4.17.11",
+    "@types/express-rate-limit": "^5.1.1",
     "@types/jest": "^26.0.22",
     "@types/node": "^14.14.39",
     "@typescript-eslint/eslint-plugin": "^4.22.0",
@@ -39,5 +44,15 @@
     "ts-jest": "^26.5.5",
     "typedoc": "^0.20.36",
     "typescript": "^4.2.4"
+  },
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "dotenv-safe": "^8.2.0",
+    "express": "^4.17.1",
+    "express-rate-limit": "^5.2.6",
+    "helmet": "^4.5.0",
+    "joiful": "^3.0.2",
+    "nodemon": "^2.0.7",
+    "winston": "^3.3.3"
   }
 }
