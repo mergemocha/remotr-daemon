@@ -4,10 +4,10 @@ import 'reflect-metadata'
 // Setup logger
 import './common/logger'
 
-import dotenv from 'dotenv-safe'
 import express from 'express'
 import helmet from 'helmet'
 import v1Router from './api/v1/index'
+import registerDaemon from './api/v1/routes/daemon/handlers/register'
 
 function terminate (): void {
   logger.error('BOOT: Encountered fatal error during boot process. Exiting...')
@@ -18,7 +18,6 @@ function terminate (): void {
 void (async () => {
   // Load configuration
   logger.info('BOOT: Loading configuration.')
-  dotenv.config()
   logger.info('BOOT: Configuration loaded.')
 
   const app = express()
@@ -32,8 +31,8 @@ void (async () => {
   // Apply routers
   app.use('/api/v1', v1Router)
 
-  const host = process.env.SERVER_HOST
-  const port = process.env.SERVER_PORT
+  const host = 'localhost'
+  const port = '63636'
 
   if (!host || !port || isNaN(parseInt(port))) {
     logger.error(`BOOT: SERVER_HOST and/or SERVER_PORT not defined correctly; expected string and number, got SERVER_HOST=${host} SERVER_PORT=${port}`)
@@ -43,6 +42,10 @@ void (async () => {
 
   app.listen(parseInt(port), host, () => {
     logger.info(`BOOT: REST server listening on http://${host}:${port}.`)
+
+    // Registering daemon on setup for development purposes
+    registerDaemon()
+
     logger.info('BOOT: Startup complete.')
   })
 })()

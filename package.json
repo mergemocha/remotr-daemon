@@ -46,13 +46,19 @@
     "typescript": "^4.2.4"
   },
   "dependencies": {
+    "axios": "^0.21.1",
+    "binary-extensions": "^2.2.0",
     "dotenv": "^8.2.0",
     "dotenv-safe": "^8.2.0",
+    "ee-first": "^1.1.1",
     "express": "^4.17.1",
     "express-rate-limit": "^5.2.6",
     "helmet": "^4.5.0",
     "joiful": "^3.0.2",
+    "keytar": "^7.7.0",
     "nodemon": "^2.0.7",
+    "reflect-metadata": "^0.1.13",
+    "simple-swizzle": "^0.2.2",
     "winston": "^3.3.3"
   }
 }
