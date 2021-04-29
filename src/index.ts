@@ -4,11 +4,11 @@ import 'reflect-metadata'
 // Setup logger
 import './common/logger'
 
-import dotenv from 'dotenv-safe'
 import express from 'express'
 import helmet from 'helmet'
 import v1Router from './api/v1/index'
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function terminate (): void {
   logger.error('BOOT: Encountered fatal error during boot process. Exiting...')
   process.exit(1)
