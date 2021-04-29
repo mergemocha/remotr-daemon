@@ -6,6 +6,7 @@ export default (args: yargs.Argv): void => {
     .usage('Usage: $0 install -h http://localhost:3000 -s supersecret')
     .alias('h', 'host')
     .alias('s', 'secret')
+    .describe({ h: 'Backend host', s: 'Server secret' })
     .demandOption(['h', 's'])
 
   // TODO: Implement

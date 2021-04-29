@@ -27,7 +27,9 @@ export default (): void => {
         break
       default:
         console.log(`Unknown command ${command}; valid commands are [in|un|re]install, [de|re]register. Exiting.`)
-        process.exit(0)
     }
+
+    // Exit after CLI completes
+    process.exit(0)
   }
 }
