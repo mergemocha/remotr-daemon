@@ -15,24 +15,21 @@ function terminate (): void {
   process.exit(1)
 }
 
-// We can't reliably use TLA (Top-Level Await) yet, so we have to fallback to an async IIFE
-void (async () => {
-  logger.info('BOOT: Starting up.')
-  logger.info(`BOOT: Running in ${process.env.NODE_ENV === 'development' ? 'development' : 'production'} mode.`)
+logger.info('BOOT: Starting up.')
+logger.info(`BOOT: Running in ${process.env.NODE_ENV === 'development' ? 'development' : 'production'} mode.`)
 
-  const app = express()
+const app = express()
 
-  // Parse bodies as JSON
-  app.use(express.json())
+// Parse bodies as JSON
+app.use(express.json())
 
-  // Load Helmet
-  app.use(helmet())
+// Load Helmet
+app.use(helmet())
 
-  // Apply routers
-  app.use('/api/v1', v1Router)
+// Apply routers
+app.use('/api/v1', v1Router)
 
-  app.listen(63636, 'localhost', () => {
-    logger.info('BOOT: REST server listening on http://localhost:63636.')
-    logger.info('BOOT: Startup complete.')
-  })
-})()
+app.listen(63636, 'localhost', () => {
+  logger.info('BOOT: REST server listening on http://localhost:63636.')
+  logger.info('BOOT: Startup complete.')
+})
