@@ -61,7 +61,61 @@
 				<a href="#remotr-daemon" id="remotr-daemon" style="color: inherit; text-decoration: none;">
 					<h1>remotr-daemon</h1>
 				</a>
-				<p>Daemon software for Remotr</p>
+				<p>Daemon software for Remotr.</p>
+				<a href="#cli" id="cli" style="color: inherit; text-decoration: none;">
+					<h2>CLI</h2>
+				</a>
+				<p>The Remotr daemon can be configured via a simple CLI.</p>
+				<p>Usage:</p>
+				<pre><code class="language-bash"><span style="color: #008000"># Install</span>
+<span style="color: #000000">remotr-daemon.exe install --host http://yourbackendhost:3000 --secret yourServerSecret</span>
+<span style="color: #008000"># Or with shorter syntax</span>
+<span style="color: #000000">remotr-daemon.exe install -h http://yourbackendhost:3000 -s yourServerSecret</span>
+
+<span style="color: #008000"># Uninstall</span>
+<span style="color: #000000">remotr-daemon.exe uninstall</span>
+</code></pre>
+				<p>Available commands:</p>
+				<table>
+					<thead>
+						<tr>
+							<th>Command</th>
+							<th>Arguments</th>
+							<th>Description</th>
+						</tr>
+					</thead>
+					<tbody><tr>
+							<td>install</td>
+							<td>--host/-s, --secret/-s</td>
+							<td>Registers the daemon and installs the Windows service.</td>
+						</tr>
+						<tr>
+							<td>uninstall</td>
+							<td>(None)</td>
+							<td>Deregisters the daemon and uninstalls the Windows service.</td>
+						</tr>
+						<tr>
+							<td>reinstall</td>
+							<td>--host/-s, --secret/-s</td>
+							<td>Reinstalls and re-registers the daemon.</td>
+						</tr>
+						<tr>
+							<td>register</td>
+							<td>--host/-s, --secret/-s</td>
+							<td>Registers the daemon with the backend.</td>
+						</tr>
+						<tr>
+							<td>deregister</td>
+							<td>(None)</td>
+							<td>De-registers the daemon from the backend.</td>
+						</tr>
+						<tr>
+							<td>reregister</td>
+							<td>--host/-s, --secret/-s</td>
+							<td>Re-registers the daemon with the backend.</td>
+						</tr>
+				</tbody></table>
+				<p>(Note: All CLI arguments are mandatory unless marked as optional by surrounding with [brackets].)</p>
 			</div>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
@@ -87,6 +141,21 @@
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="modules/api_v1_routes_daemon_handlers_shutdown.html">api/v1/routes/daemon/handlers/shutdown</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/cli.html">cli</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/cli_handlers_deregister.html">cli/handlers/deregister</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/cli_handlers_install.html">cli/handlers/install</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/cli_handlers_register.html">cli/handlers/register</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/cli_handlers_uninstall.html">cli/handlers/uninstall</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="modules/common_windowseventlogtransport.html">common/<wbr>Windows<wbr>Event<wbr>Log<wbr>Transport</a>
