@@ -8,6 +8,7 @@ import express from 'express'
 import helmet from 'helmet'
 import v1Router from './api/v1/index'
 
+// Leaving this here, we might still need this
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 function terminate (): void {
   logger.error('BOOT: Encountered fatal error during boot process. Exiting...')

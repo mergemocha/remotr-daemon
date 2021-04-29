@@ -1,14 +1,17 @@
-import path from 'path'
 import { createLogger, transports, format } from 'winston'
+import TransportStream from 'winston-transport'
+import WindowsEventLogTransport from './WindowsEventLogTransport'
 
-const logPath = path.resolve(process.cwd(), 'logs')
+const isDev = process.env.NODE_ENV === 'development'
+
+const logTransports: TransportStream[] = [
+  new transports.Console({ format: format.combine(format.simple(), format.colorize()) })
+]
+
+if (!isDev) logTransports.push(new WindowsEventLogTransport({ source: 'remotr-daemon', format: format.uncolorize() }))
 
 global.logger = createLogger({
-  level: process.env.NODE_ENV !== 'development' ? 'info' : 'debug',
-  format: format.json(),
-  transports: [
-    new transports.File({ filename: path.join(logPath, 'error.log'), level: 'error' }),
-    new transports.File({ filename: path.join(logPath, 'full.log') }),
-    new transports.Console({ format: format.combine(format.colorize(), format.simple()) })
-  ]
+  level: isDev ? 'debug' : 'info',
+  format: format.combine(format.simple(), format.colorize()),
+  transports: logTransports
 })
