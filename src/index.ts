@@ -22,7 +22,7 @@ cli()
 logger.info('BOOT: Starting up.')
 logger.info(`BOOT: Running in ${process.env.NODE_ENV === 'development' ? 'development' : 'production'} mode.`)
 
-  const app = express()
+const app = express()
 
 // Parse bodies as JSON
 app.use(express.json())
