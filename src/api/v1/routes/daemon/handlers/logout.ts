@@ -7,7 +7,7 @@ import { badRequest, internalServerError, ok } from '../../../../../utils/canned
 export default async (req: ExpressHandlerRequest, res: Response, next: NextFunction): Promise<void> => {
   // logger.info()
   try {
-    if (req) {
+    if (req.body !== null) {
       // logger.info()
       ok(res)
     } else {

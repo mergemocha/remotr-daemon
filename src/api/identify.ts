@@ -4,7 +4,7 @@ import keytar from 'keytar'
 const backendHost = 'localhost'
 const backendPort = '3000'
 
-const mac = '69-04-EA-0B-FB-01'
+const mac = '69:04:EA:0B:FB:01'
 const ip = '127.0.0.1'
 const hostname = 'host'
 const user = 'user1'
