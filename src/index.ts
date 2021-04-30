@@ -8,7 +8,8 @@ import express from 'express'
 import helmet from 'helmet'
 import cli from './cli'
 import v1Router from './api/v1/index'
-import registerDaemon from './api/register'
+import { getCredential } from './common/credentialStore'
+import identify from './api/identify'
 
 // Leaving this here, we might still need this
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -17,24 +18,35 @@ function terminate (): void {
   process.exit(1)
 }
 
-// Run CLI before startup
-cli()
+void (async () => {
+  // Run CLI before startup
+  await cli()
 
-logger.info('BOOT: Starting up.')
-logger.info(`BOOT: Running in ${process.env.NODE_ENV === 'development' ? 'development' : 'production'} mode.`)
+  // Make sure we're configured before starting
+  if (await getCredential('token') === null || await getCredential('host') === null) {
+    logger.error('BOOT: Attempted to boot, but daemon has not been configured yet.')
+    terminate()
+  }
 
-const app = express()
+  logger.info('BOOT: Starting up.')
+  logger.info(`BOOT: Running in ${process.env.NODE_ENV === 'development' ? 'development' : 'production'} mode.`)
 
-// Parse bodies as JSON
-app.use(express.json())
+  const app = express()
 
-// Load Helmet
-app.use(helmet())
+  // Parse bodies as JSON
+  app.use(express.json())
 
-// Apply routers
-app.use('/api/v1', v1Router)
+  // Load Helmet
+  app.use(helmet())
 
-app.listen(63636, 'localhost', () => {
-  logger.info('BOOT: REST server listening on http://localhost:63636.')
-  logger.info('BOOT: Startup complete.')
-})
+  // Apply routers
+  app.use('/api/v1', v1Router)
+
+  // eslint-disable-next-line @typescript-eslint/no-misused-promises
+  app.listen(63636, 'localhost', async () => {
+    logger.info('BOOT: REST server listening on http://localhost:63636.')
+    logger.info('BOOT: Identifying with backend.')
+    await identify()
+    logger.info('BOOT: Startup complete.')
+  })
+})()

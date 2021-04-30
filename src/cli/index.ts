@@ -4,7 +4,7 @@ import uninstall from './handlers/uninstall'
 import register from './handlers/register'
 import deregister from './handlers/deregister'
 
-export default (): void => {
+export default async (): Promise<void> => {
   const args = yargs(process.argv.slice(2))
   const { argv } = args
 
@@ -13,17 +13,23 @@ export default (): void => {
     const command = argv._[0]
 
     switch (command) {
-      case 'install': install(args); break
-      case 'uninstall': uninstall(args, true); break
+      case 'install': await install(args); break
+      case 'uninstall': await uninstall(args, { failIfAlreadyDone: true }); break
       case 'reinstall':
-        uninstall(args) // TODO: Make install (optionally?) not fail if already deregistered
-        install(args)
+        await uninstall(args, {
+          failIfAlreadyDone: true,
+          needsArgs: true
+        })
+        await install(args)
         break
-      case 'register': register(args); break
-      case 'deregister': deregister(args, true); break
+      case 'register': await register(args); break
+      case 'deregister': await deregister(args, { failIfAlreadyDone: true }); break
       case 'reregister':
-        deregister(args) // TODO: Make deregister (optionally?) not fail if already deregistered
-        install(args)
+        await deregister(args, {
+          failIfAlreadyDone: true,
+          needsArgs: true
+        })
+        await install(args)
         break
       default:
         console.log(`Unknown command ${command}; valid commands are [in|un|re]install, [de|re]register. Exiting.`)

@@ -11,3 +11,8 @@ export const WINDOWS_MAX_SHUTDOWN_TIMEOUT = 315360000
  * @see https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/shutdown
  */
 export const WINDOWS_MAX_SHUTDOWN_COMMENT_LENGTH = 512
+
+/**
+ * Service name for the Windows Credential Store.
+ */
+export const CREDSTORE_SERVICE_NAME = 'remotr-daemon'

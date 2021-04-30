@@ -1,13 +1,10 @@
 import yargs from 'yargs'
+import register from '../../api/register'
+import { parseCLIArgs } from '../utils'
 
-export default (args: yargs.Argv): void => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { argv } = args
-    .usage('Usage: $0 install -h http://localhost:3000 -s supersecret')
-    .alias('h', 'host')
-    .alias('s', 'secret')
-    .describe({ h: 'Backend host', s: 'Server secret' })
-    .demandOption(['h', 's'])
+export default async (args: yargs.Argv): Promise<void> => {
+  const { argv } = parseCLIArgs(args)
+  await register(argv.h as string, argv.s as string)
 
-  // TODO: Implement
+  // TODO: Service installation code
 }

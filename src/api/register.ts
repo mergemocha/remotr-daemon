@@ -1,38 +1,37 @@
 import axios from 'axios'
-import keytar from 'keytar'
-import identifyDaemon from '../api/identify'
+import getMAC from 'macaddress'
+import { setCredential } from '../common/credentialStore'
+import logHTTPRequestError from '../utils/logHTTPRequestError'
 
-const backendHost = 'localhost'
-const backendPort = '3000'
-
-export default async (): Promise<void> => {
+export default async (host: string, secret: string): Promise<void> => {
   try {
-    logger.info('Sending daemon registration request.')
+    logger.info('Starting daemon registration process.')
+
     const response = await axios({
-      method: 'post',
-      url: `http://${backendHost}:${backendPort}/api/v1/daemons/register`,
+      method: 'POST',
+      url: `${host}/api/v1/daemons/register`,
       headers: {
         'Content-Type': 'application/json',
-        'X-Secret': 'supersecret'
+        'X-Secret': secret
       },
-      data: {}
+      data: { mac: await getMAC.one() }
     })
+
     if (response.status === 200) {
       const { token } = response.data
-      logger.info(`Daemon registered, received token=${token}`)
-
-      if (typeof token === 'string') {
-        logger.info(`Attempting to store token ${token} in Windows Credential Vault.`)
-        try {
-          await keytar.setPassword('remotr-daemon', 'token', token)
-          logger.info(`Token stored successfully (service=remotr-daemon, account=token, token=${token}).`)
-          void identifyDaemon()
-        } catch (err) {
-          logger.error(`An error occured while storing token. ${err.stack}`)
-        }
-      }
+      logger.info(`Daemon registered, received token ${token}. Saving in Credential Vault.`)
+      await setCredential('host', host) // Only store after we know the backend address was actually valid
+      await setCredential('token', token)
+      logger.info('Daemon registration complete.')
+    } else {
+      // In case the backend returns some funky stuff (which it shouldn't be since any other 2xx or 3xx codes would be out-of-spec)
+      throw new Error(`Received unexpected response code ${response.status} from backend. Cannot assume that registration completed successfully.`)
     }
   } catch (err) {
-    logger.error(`${err.stack}: ${err.response?.data}`)
+    if (err.response || err.request) logHTTPRequestError(err)
+
+    logger.error(`Could not register daemon: ${err.stack}`)
+    logger.error('Exiting...')
+    process.exit(1)
   }
 }
