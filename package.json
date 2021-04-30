@@ -5,7 +5,7 @@
   "main": "lib/index.js",
   "scripts": {
     "start": "node lib/index.js",
-    "dev": "nodemon lib/index.js",
+    "dev": "cross-env NODE_ENV=development nodemon lib/index.js",
     "build": "tsc",
     "watch": "tsc --watch",
     "test": "jest",
@@ -26,13 +26,14 @@
   },
   "homepage": "https://github.com/mergemocha/remotr-daemon#readme",
   "devDependencies": {
-    "@types/dotenv-safe": "^8.1.1",
     "@types/express": "^4.17.11",
     "@types/express-rate-limit": "^5.1.1",
     "@types/jest": "^26.0.22",
     "@types/node": "^15.0.1",
+    "@types/node-windows": "^0.1.0",
     "@typescript-eslint/eslint-plugin": "^4.22.0",
     "@typescript-eslint/parser": "^4.22.0",
+    "cross-env": "^7.0.3",
     "eslint": "^7.25.0",
     "eslint-config-standard-with-typescript": "^20.0.0",
     "eslint-plugin-import": "^2.22.1",
@@ -58,9 +59,12 @@
     "helmet": "^4.5.0",
     "joiful": "^3.0.2",
     "keytar": "^7.7.0",
+    "node-windows": "^1.0.0-beta.5",
     "nodemon": "^2.0.7",
     "reflect-metadata": "^0.1.13",
     "simple-swizzle": "^0.2.2",
-    "winston": "^3.3.3"
+    "winston": "^3.3.3",
+    "winston-transport": "^4.4.0",
+    "yargs": "^16.2.0"
   }
 }

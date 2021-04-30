@@ -6,46 +6,35 @@ import './common/logger'
 
 import express from 'express'
 import helmet from 'helmet'
+import cli from './cli'
 import v1Router from './api/v1/index'
 import registerDaemon from './api/register'
 
+// Leaving this here, we might still need this
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function terminate (): void {
   logger.error('BOOT: Encountered fatal error during boot process. Exiting...')
   process.exit(1)
 }
 
-// We can't reliably use TLA (Top-Level Await) yet, so we have to fallback to an async IIFE
-void (async () => {
-  // Load configuration
-  logger.info('BOOT: Loading configuration.')
-  logger.info('BOOT: Configuration loaded.')
+// Run CLI before startup
+cli()
 
-  const app = express()
+logger.info('BOOT: Starting up.')
+logger.info(`BOOT: Running in ${process.env.NODE_ENV === 'development' ? 'development' : 'production'} mode.`)
 
-  // Parse bodies as JSON
-  app.use(express.json())
+const app = express()
 
-  // Load Helmet
-  app.use(helmet())
+// Parse bodies as JSON
+app.use(express.json())
 
-  // Apply routers
-  app.use('/api/v1', v1Router)
+// Load Helmet
+app.use(helmet())
 
-  const host = 'localhost'
-  const port = '63636'
+// Apply routers
+app.use('/api/v1', v1Router)
 
-  if (!host || !port || isNaN(parseInt(port))) {
-    logger.error(`BOOT: SERVER_HOST and/or SERVER_PORT not defined correctly; expected string and number, got SERVER_HOST=${host} SERVER_PORT=${port}`)
-    terminate()
-    return // This is just here to satisfy TS since it doesn't know that this function just terminates the program
-  }
-
-  app.listen(parseInt(port), host, () => {
-    logger.info(`BOOT: REST server listening on http://${host}:${port}.`)
-
-    // Registering and identifying daemon on setup for development purposes
-    void registerDaemon()
-
-    logger.info('BOOT: Startup complete.')
-  })
-})()
+app.listen(63636, 'localhost', () => {
+  logger.info('BOOT: REST server listening on http://localhost:63636.')
+  logger.info('BOOT: Startup complete.')
+})
