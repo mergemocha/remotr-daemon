@@ -7,7 +7,7 @@ import './common/logger'
 import express from 'express'
 import helmet from 'helmet'
 import v1Router from './api/v1/index'
-import registerDaemon from './api/v1/routes/daemon/handlers/register'
+import registerDaemon from './api/register'
 
 function terminate (): void {
   logger.error('BOOT: Encountered fatal error during boot process. Exiting...')
@@ -43,8 +43,8 @@ void (async () => {
   app.listen(parseInt(port), host, () => {
     logger.info(`BOOT: REST server listening on http://${host}:${port}.`)
 
-    // Registering daemon on setup for development purposes
-    registerDaemon()
+    // Registering and identifying daemon on setup for development purposes
+    void registerDaemon()
 
     logger.info('BOOT: Startup complete.')
   })
