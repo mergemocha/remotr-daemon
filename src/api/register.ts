@@ -20,8 +20,8 @@ export default async (host: string, secret: string): Promise<void> => {
     if (response.status === 200) {
       const { token } = response.data
       logger.info(`Daemon registered, received token ${token}. Saving in Credential Vault.`)
-      await setCredential('host', host) // Only store after we know the backend address was actually valid
-      await setCredential('token', token)
+      setCredential('host', host) // Only store after we know the backend address was actually valid
+      setCredential('token', token)
       logger.info('Daemon registration complete.')
     } else {
       // In case the backend returns some funky stuff (which it shouldn't be since any other 2xx or 3xx codes would be out-of-spec)

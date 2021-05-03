@@ -5,7 +5,9 @@ const config = new Conf({
   // fiddling with the config if they find it somewhere
   encryptionKey: 'supersecret',
   clearInvalidConfig: true,
-  fileExtension: 'db'
+  fileExtension: 'db',
+  // This is a bit of a hack but it's the only way we'll get configs into the package EXE
+  cwd: process.cwd()
 })
 
 export function getCredential (key: string): unknown | null {

@@ -2,7 +2,7 @@ import yargs from 'yargs'
 import isAdmin from 'is-admin'
 import register from '../../api/register'
 import { parseCLIArgs } from '../utils'
-import { installService } from '../../utils/windowsServiceManager'
+import { installService, startService } from '../../os-shim/windowsServiceDriver'
 
 export default async (args: yargs.Argv): Promise<void> => {
   const { argv } = parseCLIArgs(args)
@@ -19,7 +19,9 @@ export default async (args: yargs.Argv): Promise<void> => {
       logger.warn('Running in development mode, not installing service. Please use the register command instead.')
     } else {
       await installService()
-      logger.info('The Remotr daemon component is now installed. To start it, please run "net start remotr-daemon" in this terminal.')
+      logger.info('The Remotr daemon component is now installed. Starting the service...')
+      await startService()
+      logger.info('Remotr daemon is running!')
     }
   } catch (err) {
     logger.error(`Could not install Windows service: ${err.stack}`)
