@@ -8,8 +8,12 @@ export default async (args: yargs.Argv): Promise<void> => {
   await register(argv.h as string, argv.s as string)
 
   try {
-    await installService()
-    logger.info('The Remotr daemon component is now installed. To start it, please run "net start remotr-daemon" in this terminal.')
+    if (process.env.NODE_ENV === 'development') {
+      logger.warn('Running in development mode, not installing service. Please use the register command instead.')
+    } else {
+      await installService()
+      logger.info('The Remotr daemon component is now installed. To start it, please run "net start remotr-daemon" in this terminal.')
+    }
   } catch (err) {
     logger.error(`Could not install Windows service: ${err.stack}`)
     process.exit(1)

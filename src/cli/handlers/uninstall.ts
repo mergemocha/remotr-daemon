@@ -15,8 +15,12 @@ export default async (args: yargs.Argv, options?: { failIfAlreadyDone?: boolean,
   await deregister()
 
   try {
-    const wasUninstalled = await uninstallService()
-    if (options?.failIfAlreadyDone && !wasUninstalled) process.exit(1)
+    if (process.env.NODE_ENV === 'development') {
+      logger.warn('Running in development mode, not uninstalling service. Please use the deregister command instead.')
+    } else {
+      const wasUninstalled = await uninstallService()
+      if (options?.failIfAlreadyDone && !wasUninstalled) process.exit(1)
+    }
   } catch (err) {
     logger.error(`Could not uninstall Windows service: ${err.stack}`)
   }
