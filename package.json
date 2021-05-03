@@ -7,7 +7,7 @@
   "pkg": {
     "scripts": "lib/**/*.js",
     "targets": [
-      "node15-win-x64"
+      "latest-win-x64"
     ],
     "outputPath": "dist"
   },
