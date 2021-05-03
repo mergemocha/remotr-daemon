@@ -3,17 +3,31 @@
   "version": "1.0.0",
   "description": "Daemon software for Remotr",
   "main": "lib/index.js",
+  "bin": "lib/index.js",
+  "pkg": {
+    "scripts": "lib/**/*.js",
+    "assets": [
+      "node_modules/node-windows/bin/**/*"
+    ],
+    "targets": [
+      "latest-win-x64"
+    ],
+    "outputPath": "dist"
+  },
   "scripts": {
     "start": "node lib/index.js",
     "dev": "cross-env NODE_ENV=development nodemon lib/index.js",
-    "build": "tsc",
+    "build": "npm run tsc && npm run pkg",
+    "tsc": "tsc",
     "watch": "tsc --watch",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --config jest.coverage.js",
     "test:coverage:watch": "jest --watchAll --config jest.coverage.js",
     "lint": "eslint . --ext .ts",
-    "doc": "typedoc --out docs src"
+    "doc": "typedoc --out docs src",
+    "pkg": "pkg . --compress GZip && npm run combine-build",
+    "combine-build": "node scripts/combine-build.js"
   },
   "repository": {
     "type": "git",
@@ -28,6 +42,7 @@
   "devDependencies": {
     "@types/express": "^4.17.11",
     "@types/express-rate-limit": "^5.1.1",
+    "@types/fs-extra": "^9.0.11",
     "@types/jest": "^26.0.22",
     "@types/node": "^15.0.1",
     "@types/node-windows": "^0.1.0",
@@ -42,16 +57,24 @@
     "eslint-plugin-standard": "^5.0.0",
     "eslint-plugin-tsdoc": "^0.2.14",
     "jest": "^26.6.3",
+    "pkg": "^5.1.0",
     "ts-jest": "^26.5.5",
     "typedoc": "^0.20.36",
     "typescript": "^4.2.4"
   },
   "dependencies": {
+    "axios": "^0.21.1",
+    "conf": "^10.0.1",
     "execa": "^5.0.0",
     "express": "^4.17.1",
     "express-rate-limit": "^5.2.6",
+    "express-validator": "^6.10.1",
+    "fs-extra": "^9.1.0",
     "helmet": "^4.6.0",
+    "internal-ip": "^6.2.0",
+    "is-admin": "^3.0.0",
     "joiful": "^3.0.2",
+    "macaddress": "^0.5.2",
     "node-windows": "^1.0.0-beta.5",
     "nodemon": "^2.0.7",
     "reflect-metadata": "^0.1.13",

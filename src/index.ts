@@ -7,33 +7,56 @@ import './common/logger'
 import express from 'express'
 import helmet from 'helmet'
 import cli from './cli'
-import v1Router from './api/v1/index'
+import v1Router from './api/v1'
+import { hasCredential } from './common/credentialStore'
+import identify from './api/identify'
+import getInternalIP from 'internal-ip'
 
-// Leaving this here, we might still need this
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+/**
+ * Terminates the program if a fatal error is encountered during the boot process.
+ */
 function terminate (): void {
   logger.error('BOOT: Encountered fatal error during boot process. Exiting...')
   process.exit(1)
 }
 
-// Run CLI before startup
-cli()
+void (async () => {
+  // Run CLI before startup
+  await cli()
 
-logger.info('BOOT: Starting up.')
-logger.info(`BOOT: Running in ${process.env.NODE_ENV === 'development' ? 'development' : 'production'} mode.`)
+  // Make sure we're configured before starting
+  if (!hasCredential('token') || !hasCredential('host')) {
+    logger.error('BOOT: Attempted to boot, but daemon has not been configured yet.')
+    terminate()
+  }
 
-const app = express()
+  logger.info('BOOT: Starting up.')
+  logger.info(`BOOT: Running in ${process.env.NODE_ENV === 'development' ? 'development' : 'production'} mode.`)
 
-// Parse bodies as JSON
-app.use(express.json())
+  const app = express()
 
-// Load Helmet
-app.use(helmet())
+  // Parse bodies as JSON
+  app.use(express.json())
 
-// Apply routers
-app.use('/api/v1', v1Router)
+  // Load Helmet
+  app.use(helmet())
 
-app.listen(63636, 'localhost', () => {
-  logger.info('BOOT: REST server listening on http://localhost:63636.')
-  logger.info('BOOT: Startup complete.')
-})
+  // Apply routers
+  app.use('/api/v1', v1Router)
+
+  // Expose at localhost in dev, internal IP in prod
+  let ip = process.env.NODE_ENV === 'development' ? 'localhost' : await getInternalIP.v4()
+
+  if (!ip) {
+    logger.warn('Could not determine internal IP address; host is probably not connected to any networks. Starting server on localhost instead.')
+    ip = 'localhost'
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-misused-promises
+  app.listen(63636, ip, async () => {
+    logger.info(`BOOT: REST server listening on http://${ip}:63636.`)
+    logger.info('BOOT: Identifying with backend.')
+    await identify()
+    logger.info('BOOT: Startup complete.')
+  })
+})()

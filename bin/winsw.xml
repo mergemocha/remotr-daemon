@@ -1,0 +1,8 @@
+<service>
+  <id>remotr-daemon</id>
+  <name>Remotr Daemon</name>
+  <description>Remotr daemon software component</description>
+  <executable>{{execPath}}</executable>
+  <log mode="roll" />
+  <onfailure action="restart" />
+</service>
