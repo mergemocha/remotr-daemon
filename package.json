@@ -3,6 +3,14 @@
   "version": "1.0.0",
   "description": "Daemon software for Remotr",
   "main": "lib/index.js",
+  "bin": "lib/index.js",
+  "pkg": {
+    "scripts": "lib/**/*.js",
+    "targets": [
+      "latest-win-x64"
+    ],
+    "outputPath": "dist"
+  },
   "scripts": {
     "start": "node lib/index.js",
     "dev": "cross-env NODE_ENV=development nodemon lib/index.js",
@@ -13,7 +21,8 @@
     "test:coverage": "jest --config jest.coverage.js",
     "test:coverage:watch": "jest --watchAll --config jest.coverage.js",
     "lint": "eslint . --ext .ts",
-    "doc": "typedoc --out docs src"
+    "doc": "typedoc --out docs src",
+    "pkg": "pkg . --compress GZip"
   },
   "repository": {
     "type": "git",
@@ -42,6 +51,7 @@
     "eslint-plugin-standard": "^5.0.0",
     "eslint-plugin-tsdoc": "^0.2.14",
     "jest": "^26.6.3",
+    "pkg": "^5.1.0",
     "ts-jest": "^26.5.5",
     "typedoc": "^0.20.36",
     "typescript": "^4.2.4"
