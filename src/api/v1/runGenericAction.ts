@@ -1,7 +1,7 @@
 import { NextFunction, Response } from 'express'
 import { ExpressHandlerRequest } from '../../types/ExpressHandlerRequest'
 import { internalServerError, ok } from '../../utils/cannedHTTPResponses'
-import { ShutdownOptions } from '../../os-shim/index'
+import { ShutdownOptions } from '../../os-shim'
 import requestWasValid from '../../utils/requestWasValid'
 
 type OpFn = (options: ShutdownOptions) => void | Promise<void>

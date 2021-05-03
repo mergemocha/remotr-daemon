@@ -13,8 +13,8 @@ export default async (): Promise<void> => {
     const host = await getCredential('host')
     const token = await getCredential('token')
 
-    // Need to check whether we have an internal IP
-    const ip = await getInternalIP.v4()
+    // Need to check whether we have an internal IP (in dev: use localhost)
+    const ip = process.env.NODE_ENV === 'development' ? 'localhost' : await getInternalIP.v4()
     if (!ip) throw new Error('Could not determine IP address; host is probably not connected to any networks.')
 
     const mac = await getMAC.one()

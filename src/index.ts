@@ -7,7 +7,7 @@ import './common/logger'
 import express from 'express'
 import helmet from 'helmet'
 import cli from './cli'
-import v1Router from './api/v1/index'
+import v1Router from './api/v1'
 import { getCredential } from './common/credentialStore'
 import identify from './api/identify'
 

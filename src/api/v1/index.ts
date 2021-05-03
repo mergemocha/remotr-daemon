@@ -1,6 +1,6 @@
 import express from 'express'
 import rateLimit from 'express-rate-limit'
-import daemonRoutes from './routes/daemon'
+import actionRoutes from './routes/actions'
 
 const router = express.Router()
 
@@ -12,6 +12,6 @@ router.use(rateLimit({
 }))
 
 // Configure routes
-router.use('/actions', daemonRoutes)
+router.use('/actions', actionRoutes)
 
 export default router
