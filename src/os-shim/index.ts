@@ -2,7 +2,7 @@ import { WINDOWS_MAX_SHUTDOWN_COMMENT_LENGTH, WINDOWS_MAX_SHUTDOWN_TIMEOUT } fro
 import execute from './commandExecutor'
 import ShutdownCommandBuilder, { WindowsShutdownFlag } from './ShutdownCommandBuilder'
 
-interface ShutdownOptions {
+export interface ShutdownOptions {
   force?: boolean
   timeout?: number
   comment?: string
