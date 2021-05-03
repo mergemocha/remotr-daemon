@@ -1,12 +1,12 @@
 import yargs from 'yargs'
 import deregister from '../../api/deregister'
-import { getCredential } from '../../common/credentialStore'
+import { hasCredential } from '../../common/credentialStore'
 import { parseCLIArgs } from '../utils'
 
 export default async (args: yargs.Argv, options?: { failIfAlreadyDone?: boolean, needsArgs?: boolean }): Promise<void> => {
   if (options?.needsArgs) parseCLIArgs(args)
 
-  if (options?.failIfAlreadyDone && (await getCredential('host') === null || await getCredential('token') === null)) {
+  if (options?.failIfAlreadyDone && (!hasCredential('host') || !hasCredential('host'))) {
     logger.warn('Daemon is already de-registered.')
     process.exit(1)
   }

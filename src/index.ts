@@ -8,7 +8,7 @@ import express from 'express'
 import helmet from 'helmet'
 import cli from './cli'
 import v1Router from './api/v1'
-import { getCredential } from './common/credentialStore'
+import { hasCredential } from './common/credentialStore'
 import identify from './api/identify'
 
 // Leaving this here, we might still need this
@@ -23,7 +23,7 @@ void (async () => {
   await cli()
 
   // Make sure we're configured before starting
-  if (await getCredential('token') === null || await getCredential('host') === null) {
+  if (!hasCredential('token') || !hasCredential('host')) {
     logger.error('BOOT: Attempted to boot, but daemon has not been configured yet.')
     terminate()
   }

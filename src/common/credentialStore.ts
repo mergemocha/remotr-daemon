@@ -1,14 +1,25 @@
-import { getPassword, setPassword, deletePassword } from 'keytar'
-import { CREDSTORE_SERVICE_NAME } from './constants'
+import Conf from 'conf'
 
-export async function getCredential (key: string): Promise<string | null> {
-  return await getPassword(CREDSTORE_SERVICE_NAME, key)
+const config = new Conf({
+  // This is not a leak; this is just here to prevent casual users from
+  // fiddling with the config if they find it somewhere
+  encryptionKey: 'supersecret',
+  clearInvalidConfig: true,
+  fileExtension: 'db'
+})
+
+export function getCredential (key: string): unknown | null {
+  return config.get(key, null)
 }
 
-export async function setCredential (key: string, value: string): Promise<void> {
-  return await setPassword(CREDSTORE_SERVICE_NAME, key, value)
+export function hasCredential (key: string): boolean {
+  return config.has(key)
 }
 
-export async function deleteCredential (key: string): Promise<boolean> {
-  return await deletePassword(CREDSTORE_SERVICE_NAME, key)
+export function setCredential (key: string, value: string): void {
+  return config.set(key, value)
+}
+
+export function deleteCredential (key: string): void {
+  config.delete(key)
 }

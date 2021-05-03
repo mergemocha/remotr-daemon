@@ -58,6 +58,7 @@
   },
   "dependencies": {
     "axios": "^0.21.1",
+    "conf": "^10.0.1",
     "execa": "^5.0.0",
     "express": "^4.17.1",
     "express-rate-limit": "^5.2.6",
@@ -65,7 +66,6 @@
     "helmet": "^4.5.0",
     "internal-ip": "^6.2.0",
     "joiful": "^3.0.2",
-    "keytar": "^7.7.0",
     "macaddress": "^0.5.2",
     "node-windows": "^1.0.0-beta.5",
     "nodemon": "^2.0.7",
