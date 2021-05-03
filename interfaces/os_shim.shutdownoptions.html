@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>FlagObject | remotr-daemon</title>
+	<title>ShutdownOptions | remotr-daemon</title>
 	<meta name="description" content="Documentation for remotr-daemon">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -55,13 +55,13 @@
 					<a href="../modules.html">remotr-daemon</a>
 				</li>
 				<li>
-					<a href="../modules/os_shim_shutdowncommandbuilder.html">os-shim/ShutdownCommandBuilder</a>
+					<a href="../modules/os_shim.html">os-shim</a>
 				</li>
 				<li>
-					<a href="os_shim_shutdowncommandbuilder.flagobject.html">FlagObject</a>
+					<a href="os_shim.shutdownoptions.html">ShutdownOptions</a>
 				</li>
 			</ul>
-			<h1>Interface FlagObject</h1>
+			<h1>Interface ShutdownOptions</h1>
 		</div>
 	</div>
 </header>
@@ -72,7 +72,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">FlagObject</span>
+						<span class="target">ShutdownOptions</span>
 					</li>
 				</ul>
 			</section>
@@ -83,9 +83,9 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="os_shim_shutdowncommandbuilder.flagobject.html#asfirst" class="tsd-kind-icon">as<wbr>First</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="os_shim_shutdowncommandbuilder.flagobject.html#flag" class="tsd-kind-icon">flag</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="os_shim_shutdowncommandbuilder.flagobject.html#value" class="tsd-kind-icon">value</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="os_shim.shutdownoptions.html#comment" class="tsd-kind-icon">comment</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="os_shim.shutdownoptions.html#force" class="tsd-kind-icon">force</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="os_shim.shutdownoptions.html#timeout" class="tsd-kind-icon">timeout</a></li>
 							</ul>
 						</section>
 					</div>
@@ -94,32 +94,32 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="asfirst" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> as<wbr>First</h3>
-					<div class="tsd-signature tsd-kind-icon">as<wbr>First<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+					<a name="comment" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> comment</h3>
+					<div class="tsd-signature tsd-kind-icon">comment<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/mergemocha/remotr-daemon/blob/610b6ce/src/os-shim/ShutdownCommandBuilder.ts#L16">src/os-shim/ShutdownCommandBuilder.ts:16</a></li>
+							<li>Defined in <a href="https://github.com/mergemocha/remotr-daemon/blob/610b6ce/src/os-shim/index.ts#L8">src/os-shim/index.ts:8</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="flag" class="tsd-anchor"></a>
-					<h3>flag</h3>
-					<div class="tsd-signature tsd-kind-icon">flag<span class="tsd-signature-symbol">:</span> <a href="../enums/os_shim_shutdowncommandbuilder.windowsshutdownflag.html" class="tsd-signature-type" data-tsd-kind="Enumeration">WindowsShutdownFlag</a></div>
+					<a name="force" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> force</h3>
+					<div class="tsd-signature tsd-kind-icon">force<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/mergemocha/remotr-daemon/blob/610b6ce/src/os-shim/ShutdownCommandBuilder.ts#L14">src/os-shim/ShutdownCommandBuilder.ts:14</a></li>
+							<li>Defined in <a href="https://github.com/mergemocha/remotr-daemon/blob/610b6ce/src/os-shim/index.ts#L6">src/os-shim/index.ts:6</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="value" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> value</h3>
-					<div class="tsd-signature tsd-kind-icon">value<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">boolean</span></div>
+					<a name="timeout" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> timeout</h3>
+					<div class="tsd-signature tsd-kind-icon">timeout<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/mergemocha/remotr-daemon/blob/610b6ce/src/os-shim/ShutdownCommandBuilder.ts#L15">src/os-shim/ShutdownCommandBuilder.ts:15</a></li>
+							<li>Defined in <a href="https://github.com/mergemocha/remotr-daemon/blob/610b6ce/src/os-shim/index.ts#L7">src/os-shim/index.ts:7</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -132,36 +132,42 @@
 						<a href="../modules.html">Exports</a>
 					</li>
 					<li class="current tsd-kind-module">
-						<a href="../modules/os_shim_shutdowncommandbuilder.html">os-<wbr>shim/<wbr>Shutdown<wbr>Command<wbr>Builder</a>
+						<a href="../modules/os_shim.html">os-<wbr>shim</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-enum tsd-parent-kind-module">
-						<a href="../enums/os_shim_shutdowncommandbuilder.windowsshutdownflag.html" class="tsd-kind-icon">Windows<wbr>Shutdown<wbr>Flag</a>
-					</li>
-					<li class=" tsd-kind-class tsd-parent-kind-module">
-						<a href="../classes/os_shim_shutdowncommandbuilder.default.html" class="tsd-kind-icon">default</a>
-					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface tsd-parent-kind-module">
-						<a href="os_shim_shutdowncommandbuilder.flagobject.html" class="tsd-kind-icon">Flag<wbr>Object</a>
+						<a href="os_shim.shutdownoptions.html" class="tsd-kind-icon">Shutdown<wbr>Options</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="os_shim_shutdowncommandbuilder.flagobject.html#asfirst" class="tsd-kind-icon">as<wbr>First</a>
+								<a href="os_shim.shutdownoptions.html#comment" class="tsd-kind-icon">comment</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="os_shim_shutdowncommandbuilder.flagobject.html#flag" class="tsd-kind-icon">flag</a>
+								<a href="os_shim.shutdownoptions.html#force" class="tsd-kind-icon">force</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="os_shim_shutdowncommandbuilder.flagobject.html#value" class="tsd-kind-icon">value</a>
+								<a href="os_shim.shutdownoptions.html#timeout" class="tsd-kind-icon">timeout</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="../modules/os_shim.html#logout" class="tsd-kind-icon">logout</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="../modules/os_shim.html#reboot" class="tsd-kind-icon">reboot</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="../modules/os_shim.html#restart" class="tsd-kind-icon">restart</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="../modules/os_shim.html#shutdown" class="tsd-kind-icon">shutdown</a>
+					</li>
 				</ul>
 			</nav>
 		</div>

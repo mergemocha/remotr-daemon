@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>api/v1/routes/daemon | remotr-daemon</title>
+	<title>api/register | remotr-daemon</title>
 	<meta name="description" content="Documentation for remotr-daemon">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -55,10 +55,10 @@
 					<a href="../modules.html">remotr-daemon</a>
 				</li>
 				<li>
-					<a href="api_v1_routes_daemon.html">api/v1/routes/daemon</a>
+					<a href="api_register.html">api/register</a>
 				</li>
 			</ul>
-			<h1>Module api/v1/routes/daemon</h1>
+			<h1>Module api/register</h1>
 		</div>
 	</div>
 </header>
@@ -70,25 +70,46 @@
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>Variables</h3>
+							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-variable tsd-parent-kind-module"><a href="api_v1_routes_daemon.html#default" class="tsd-kind-icon">default</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-module"><a href="api_register.html#default" class="tsd-kind-icon">default</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Variables</h2>
-				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-module">
+				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-module">
 					<a name="default" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagConst">Const</span> default</h3>
-					<div class="tsd-signature tsd-kind-icon">default<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Router</span><span class="tsd-signature-symbol"> = ...</span></div>
+					<h3>default</h3>
+					<div class="tsd-signature tsd-kind-icon">default<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>host<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, secret<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/mergemocha/remotr-daemon/blob/a94a792/src/api/v1/routes/daemon/index.ts#L9">src/api/v1/routes/daemon/index.ts:9</a></li>
-						</ul>
 					</aside>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-signature">
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-module">
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>host<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, secret<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+								</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<h4 class="tsd-parameters-title">Parameters</h4>
+										<ul class="tsd-parameters">
+											<li>
+												<h5>host: <span class="tsd-signature-type">string</span></h5>
+											</li>
+											<li>
+												<h5>secret: <span class="tsd-signature-type">string</span></h5>
+											</li>
+										</ul>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
 				</section>
 			</section>
 		</div>
@@ -98,75 +119,15 @@
 					<li class=" ">
 						<a href="../modules.html">Exports</a>
 					</li>
-					<li class=" tsd-kind-module">
-						<a href="api_v1.html">api/v1</a>
-					</li>
 					<li class="current tsd-kind-module">
-						<a href="api_v1_routes_daemon.html">api/v1/routes/daemon</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="api_v1_routes_daemon_handlers_logout.html">api/v1/routes/daemon/handlers/logout</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="api_v1_routes_daemon_handlers_reboot.html">api/v1/routes/daemon/handlers/reboot</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="api_v1_routes_daemon_handlers_restart.html">api/v1/routes/daemon/handlers/restart</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="api_v1_routes_daemon_handlers_shutdown.html">api/v1/routes/daemon/handlers/shutdown</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="cli.html">cli</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="cli_handlers_deregister.html">cli/handlers/deregister</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="cli_handlers_install.html">cli/handlers/install</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="cli_handlers_register.html">cli/handlers/register</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="cli_handlers_uninstall.html">cli/handlers/uninstall</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="common_windowseventlogtransport.html">common/<wbr>Windows<wbr>Event<wbr>Log<wbr>Transport</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="common_constants.html">common/constants</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="common_logger.html">common/logger</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="index.html">index</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="os_shim.html">os-<wbr>shim</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="os_shim_shutdowncommandbuilder.html">os-<wbr>shim/<wbr>Shutdown<wbr>Command<wbr>Builder</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="os_shim_commandexecutor.html">os-<wbr>shim/command<wbr>Executor</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="types_expresshandlerrequest.html">types/<wbr>Express<wbr>Handler<wbr>Request</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="types_globals.html">types/globals</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="utils_cannedhttpresponses.html">utils/cannedHTTPResponses</a>
+						<a href="api_register.html">api/register</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-variable tsd-parent-kind-module">
-						<a href="api_v1_routes_daemon.html#default" class="tsd-kind-icon">default</a>
+					<li class=" tsd-kind-property tsd-parent-kind-module">
+						<a href="api_register.html#default" class="tsd-kind-icon">default</a>
 					</li>
 				</ul>
 			</nav>

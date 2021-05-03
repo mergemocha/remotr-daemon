@@ -86,7 +86,7 @@
 					</thead>
 					<tbody><tr>
 							<td>install</td>
-							<td>--host/-s, --secret/-s</td>
+							<td>--host/-h, --secret/-s</td>
 							<td>Registers the daemon and installs the Windows service.</td>
 						</tr>
 						<tr>
@@ -96,12 +96,12 @@
 						</tr>
 						<tr>
 							<td>reinstall</td>
-							<td>--host/-s, --secret/-s</td>
+							<td>--host/-h, --secret/-s</td>
 							<td>Reinstalls and re-registers the daemon.</td>
 						</tr>
 						<tr>
 							<td>register</td>
-							<td>--host/-s, --secret/-s</td>
+							<td>--host/-h, --secret/-s</td>
 							<td>Registers the daemon with the backend.</td>
 						</tr>
 						<tr>
@@ -111,11 +111,26 @@
 						</tr>
 						<tr>
 							<td>reregister</td>
-							<td>--host/-s, --secret/-s</td>
+							<td>--host/-h, --secret/-s</td>
 							<td>Re-registers the daemon with the backend.</td>
 						</tr>
 				</tbody></table>
 				<p>(Note: All CLI arguments are mandatory unless marked as optional by surrounding with [brackets].)</p>
+				<a href="#development" id="development" style="color: inherit; text-decoration: none;">
+					<h2>Development</h2>
+				</a>
+				<a href="#running" id="running" style="color: inherit; text-decoration: none;">
+					<h3>Running</h3>
+				</a>
+				<p>The TSC watcher can be started with <code>npm run watch</code>. Live-reloading can be enabled by running <code>npm run dev</code> in a separate terminal (this project does not use ts-node).</p>
+				<p>In development (i.e. when the <code>NODE_ENV</code> environment variable is set to <code>development</code>), the daemon will run on <code>localhost</code> instead of the default internal IP. Should you wish to test this functionality, run <code>npm start</code> instead of <code>npm run dev</code>.</p>
+				<p><strong>Note:</strong> In development, if not using the compiled executable, you need to use the <code>register</code> and <code>deregister</code> commands instead of <code>install</code> and <code>uninstall</code> to register/unregister the daemon. The service integration will not be available unless an executable is compiled.</p>
+				<a href="#building" id="building" style="color: inherit; text-decoration: none;">
+					<h3>Building</h3>
+				</a>
+				<p>To run the full build flow, including TypeScript compilation and compiling into an executable, use the <code>npm run build</code> script. To only compile TypeScript code, run <code>npm run tsc</code>, and to only build the executable, run <code>npm run pkg</code>.</p>
+				<p>Ready-made, runnable artifacts will be outputted into the <code>dist</code> folder.</p>
+				<p>(<strong>Note:</strong> The components in the <code>bin</code> folder are templates, <em>not</em> the installable artifacts. The <code>bin</code> and <code>dist</code> directories are automatically merged by the <code>pkg</code> script during the build process.)</p>
 			</div>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
@@ -125,22 +140,34 @@
 						<a href="modules.html">Exports</a>
 					</li>
 					<li class=" tsd-kind-module">
+						<a href="modules/api_deregister.html">api/deregister</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_identify.html">api/identify</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_register.html">api/register</a>
+					</li>
+					<li class=" tsd-kind-module">
 						<a href="modules/api_v1.html">api/v1</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="modules/api_v1_routes_daemon.html">api/v1/routes/daemon</a>
+						<a href="modules/api_v1_routes_actions.html">api/v1/routes/actions</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="modules/api_v1_routes_daemon_handlers_logout.html">api/v1/routes/daemon/handlers/logout</a>
+						<a href="modules/api_v1_routes_actions_handlers_logout.html">api/v1/routes/actions/handlers/logout</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="modules/api_v1_routes_daemon_handlers_reboot.html">api/v1/routes/daemon/handlers/reboot</a>
+						<a href="modules/api_v1_routes_actions_handlers_reboot.html">api/v1/routes/actions/handlers/reboot</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="modules/api_v1_routes_daemon_handlers_restart.html">api/v1/routes/daemon/handlers/restart</a>
+						<a href="modules/api_v1_routes_actions_handlers_restart.html">api/v1/routes/actions/handlers/restart</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="modules/api_v1_routes_daemon_handlers_shutdown.html">api/v1/routes/daemon/handlers/shutdown</a>
+						<a href="modules/api_v1_routes_actions_handlers_shutdown.html">api/v1/routes/actions/handlers/shutdown</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_v1_rungenericaction.html">api/v1/run<wbr>Generic<wbr>Action</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="modules/cli.html">cli</a>
@@ -158,10 +185,16 @@
 						<a href="modules/cli_handlers_uninstall.html">cli/handlers/uninstall</a>
 					</li>
 					<li class=" tsd-kind-module">
+						<a href="modules/cli_utils.html">cli/utils</a>
+					</li>
+					<li class=" tsd-kind-module">
 						<a href="modules/common_windowseventlogtransport.html">common/<wbr>Windows<wbr>Event<wbr>Log<wbr>Transport</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="modules/common_constants.html">common/constants</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/common_credentialstore.html">common/credential<wbr>Store</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="modules/common_logger.html">common/logger</a>
@@ -179,6 +212,9 @@
 						<a href="modules/os_shim_commandexecutor.html">os-<wbr>shim/command<wbr>Executor</a>
 					</li>
 					<li class=" tsd-kind-module">
+						<a href="modules/os_shim_windowsservicedriver.html">os-<wbr>shim/windows<wbr>Service<wbr>Driver</a>
+					</li>
+					<li class=" tsd-kind-module">
 						<a href="modules/types_expresshandlerrequest.html">types/<wbr>Express<wbr>Handler<wbr>Request</a>
 					</li>
 					<li class=" tsd-kind-module">
@@ -186,6 +222,12 @@
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="modules/utils_cannedhttpresponses.html">utils/cannedHTTPResponses</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/utils_loghttprequesterror.html">utils/logHTTPRequest<wbr>Error</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/utils_requestwasvalid.html">utils/request<wbr>Was<wbr>Valid</a>
 					</li>
 				</ul>
 			</nav>
