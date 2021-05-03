@@ -1,10 +1,16 @@
 import yargs from 'yargs'
+import isAdmin from 'is-admin'
 import deregister from '../../api/deregister'
 import { hasCredential } from '../../common/credentialStore'
 import { uninstallService } from '../../utils/windowsServiceManager'
 import { parseCLIArgs } from '../utils'
 
 export default async (args: yargs.Argv, options?: { failIfAlreadyDone?: boolean, needsArgs?: boolean }): Promise<void> => {
+  if (!(await isAdmin())) {
+    logger.error('Installation of the Windows service requires administrative privileges. Please re-run this command from an administrative command prompt.')
+    process.exit(1)
+  }
+
   if (options?.needsArgs) parseCLIArgs(args)
 
   if (options?.failIfAlreadyDone && (!hasCredential('host') || !hasCredential('host'))) {
