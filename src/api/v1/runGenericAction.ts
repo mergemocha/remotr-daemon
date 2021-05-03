@@ -19,8 +19,8 @@ export default (opName: string, opFn: OpFn, ctx: ExpressHandlerCtx): void => {
 
   try {
     logger.info(`Received ${opName} request.`)
-    void opFn(req.body)
     ok(res)
+    void opFn(req.body)
   } catch (err) {
     logger.error(`Could not complete ${opName} request: ${err.stack}`)
     internalServerError(res, err.stack)
