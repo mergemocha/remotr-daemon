@@ -1,3 +1,5 @@
+// Cross-platform copying for template binaries from /bin into /dist
+
 const path = require('path')
 const fs = require('fs-extra')
 

@@ -12,8 +12,9 @@ import { hasCredential } from './common/credentialStore'
 import identify from './api/identify'
 import getInternalIP from 'internal-ip'
 
-// Leaving this here, we might still need this
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+/**
+ * Terminates the program if a fatal error is encountered during the boot process.
+ */
 function terminate (): void {
   logger.error('BOOT: Encountered fatal error during boot process. Exiting...')
   process.exit(1)
